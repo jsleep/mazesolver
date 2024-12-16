@@ -1,26 +1,32 @@
 from window import *
 from cell import *
 from point import *
+from maze import *
+
 import random
 
-win = Window(800, 600)
+width = 800
+height = 600
+win = Window(width, height)
+
 cell_width = 50
 cell_height = 50
-cells = []
-for i in range(0, 800, cell_width):
-    for j in range(0,600, cell_height):
-        p1 = Point(i, j)
-        p2 = Point(i+cell_width, j+cell_height)
-        cell = Cell(p1, p2, win)
-        cell.has_bottom_wall = bool(random.getrandbits(1))
-        cell.has_top_wall = bool(random.getrandbits(1))
-        cell.has_left_wall = bool(random.getrandbits(1))
-        cell.has_right_wall = bool(random.getrandbits(1))
-        cell.draw()
-        cells.append(cell)
+maze = Maze(
+    0,
+    0,
+    num_rows=height//cell_height,
+    num_cols=width//cell_width,
+    cell_size_x=cell_width,
+    cell_size_y=cell_height,
+    win=win
+)
 
-c1 = random.choice(cells)
-c2 = random.choice(cells)
+i1 = random.randint(0, height//cell_height-1)
+j1 = random.randint(0, width//cell_width-1)
+c1 = maze._cells[i1][j1]
+i2 = random.randint(0, height//cell_height-1)
+j2 = random.randint(0, width//cell_width-1)
+c2 = maze._cells[i2][j2]
 c1.draw_move(c2)
 
 win.wait_for_close()
