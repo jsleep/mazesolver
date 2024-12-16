@@ -6,6 +6,7 @@ import random
 win = Window(800, 600)
 cell_width = 50
 cell_height = 50
+cells = []
 for i in range(0, 800, cell_width):
     for j in range(0,600, cell_height):
         p1 = Point(i, j)
@@ -16,5 +17,10 @@ for i in range(0, 800, cell_width):
         cell.has_left_wall = bool(random.getrandbits(1))
         cell.has_right_wall = bool(random.getrandbits(1))
         cell.draw()
+        cells.append(cell)
+
+c1 = random.choice(cells)
+c2 = random.choice(cells)
+c1.draw_move(c2)
 
 win.wait_for_close()
