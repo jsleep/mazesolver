@@ -18,15 +18,19 @@ maze = Maze(
     num_cols=width//cell_width,
     cell_size_x=cell_width,
     cell_size_y=cell_height,
-    win=win
+    win=win,
+    seed=42
 )
 
-i1 = random.randint(0, height//cell_height-1)
-j1 = random.randint(0, width//cell_width-1)
-c1 = maze._cells[i1][j1]
-i2 = random.randint(0, height//cell_height-1)
-j2 = random.randint(0, width//cell_width-1)
-c2 = maze._cells[i2][j2]
-c1.draw_move(c2)
+maze._break_entrance_and_exit()
+maze._break_walls_r(0,0)
+
+# i1 = random.randint(0, height//cell_height-1)
+# j1 = random.randint(0, width//cell_width-1)
+# c1 = maze._cells[i1][j1]
+# i2 = random.randint(0, height//cell_height-1)
+# j2 = random.randint(0, width//cell_width-1)
+# c2 = maze._cells[i2][j2]
+# c1.draw_move(c2)
 
 win.wait_for_close()
